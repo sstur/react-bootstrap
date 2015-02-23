@@ -32,6 +32,8 @@ var OverlayTrigger = React.createClass({
     delay: React.PropTypes.number,
     delayShow: React.PropTypes.number,
     delayHide: React.PropTypes.number,
+    onShow: React.PropTypes.func,
+    onHide: React.PropTypes.func,
     defaultOverlayShown: React.PropTypes.bool,
     overlay: React.PropTypes.node.isRequired
   },
@@ -57,13 +59,16 @@ var OverlayTrigger = React.createClass({
       isOverlayShown: true
     }, function() {
       this.updateOverlayPosition();
+      if (this.props.onShow) {
+        this.props.onShow();
+      }
     });
   },
 
   hide: function () {
     this.setState({
       isOverlayShown: false
-    });
+    }, this.props.onHide);
   },
 
   toggle: function () {
