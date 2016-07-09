@@ -182,7 +182,6 @@ module.exports = function (grunt) {
     'react:test',
     'amdwrap',
     'copy',
-    'browserify:test',
     'requirejs:dev',
     'uglify:build',
     'clean:transpiled'
