@@ -11,7 +11,8 @@
     "build": "grunt build",
     "transform": "jsx --extension jsx --harmony --no-cache-dir src lib && jsx --harmony --no-cache-dir src lib",
     "test-watch": "grunt watch 2>&1 >/dev/null & karma start karma.dev.js",
-    "test": "grunt build && karma start karma.ci.js"
+    "test": "grunt build && karma start karma.ci.js",
+    "prepublish": "npm run transform && npm run build"
   },
   "main": "lib/main.js",
   "directories": {
