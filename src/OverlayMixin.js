@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var CustomPropTypes = require('./utils/CustomPropTypes');
 
 module.exports = {
@@ -53,7 +54,7 @@ module.exports = {
 
     // Save reference to help testing
     if (overlay !== null) {
-      this._overlayInstance = React.render(overlay, this._overlayTarget);
+      this._overlayInstance = ReactDOM.render(overlay, this._overlayTarget);
     } else {
       // Unrender if the component is null for transitions to null
       this._unrenderOverlay();
