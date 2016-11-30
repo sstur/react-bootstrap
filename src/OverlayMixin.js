@@ -72,7 +72,7 @@ module.exports = {
     }
 
     if (this._overlayInstance) {
-      return this._overlayInstance.getDOMNode();
+      return ReactDOM.findDOMNode(this._overlayInstance);
     }
 
     return null;
@@ -80,6 +80,6 @@ module.exports = {
 
   getContainerDOMNode: function () {
     return this.props.container.getDOMNode ?
-      this.props.container.getDOMNode() : this.props.container;
+      ReactDOM.findDOMNode(this.props.container) : this.props.container;
   }
 };

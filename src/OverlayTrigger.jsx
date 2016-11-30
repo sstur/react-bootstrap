@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var OverlayMixin = require('./OverlayMixin');
 var domUtils = require('./utils/domUtils');
 var cloneWithProps = require('./utils/cloneWithProps');
@@ -216,7 +217,7 @@ var OverlayTrigger = React.createClass({
   },
 
   getPosition: function () {
-    var node = this.getDOMNode();
+    var node = ReactDOM.findDOMNode(this);
     var container = this.getContainerDOMNode();
 
     var offset = container.tagName == 'BODY' ?

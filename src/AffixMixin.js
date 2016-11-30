@@ -1,6 +1,7 @@
 /* global window, document */
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var domUtils = require('./utils/domUtils');
 var EventListener = require('./utils/EventListener');
 
@@ -39,7 +40,7 @@ var AffixMixin = {
       return;
     }
 
-    DOMNode = this.getDOMNode();
+    DOMNode = ReactDOM.findDOMNode(this);
     scrollHeight = document.documentElement.offsetHeight;
     scrollTop = window.pageYOffset;
     position = domUtils.getOffset(DOMNode);

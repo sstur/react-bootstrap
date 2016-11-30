@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var EventListener = require('./utils/EventListener');
 
 /**
@@ -48,7 +49,7 @@ var DropdownStateMixin = {
   handleDocumentClick: function (e) {
     // If the click originated from within this component
     // don't do anything.
-    if (isNodeInRoot(e.target, this.getDOMNode())) {
+    if (isNodeInRoot(e.target, ReactDOM.findDOMNode(this))) {
       return;
     }
 

@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var joinClasses = require('./utils/joinClasses');
 var BootstrapMixin = require('./BootstrapMixin');
 var CollapsableMixin = require('./CollapsableMixin');
@@ -32,11 +33,11 @@ var Nav = React.createClass({
   },
 
   getCollapsableDOMNode: function () {
-    return this.getDOMNode();
+    return ReactDOM.findDOMNode(this);
   },
 
   getCollapsableDimensionValue: function () {
-    var node = this.refs.ul.getDOMNode(),
+    var node = ReactDOM.findDOMNode(this.refs.ul),
         height = node.offsetHeight,
         computedStyles = domUtils.getComputedStyles(node);
 

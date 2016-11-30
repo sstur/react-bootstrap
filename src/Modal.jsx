@@ -1,6 +1,7 @@
 /* global document:false */
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
 var BootstrapMixin = require('./BootstrapMixin');
@@ -116,15 +117,15 @@ var Modal = React.createClass({
     // IOS only allows click events to be delegated to the document on elements
     // it considers 'clickable' - anchors, buttons, etc. We fake a click handler on the
     // DOM nodes themselves. Remove if handled by React: https://github.com/facebook/react/issues/1169
-    this.refs.modal.getDOMNode().onclick = function () {};
-    this.refs.backdrop.getDOMNode().onclick = function () {};
+    ReactDOM.findDOMNode(this.refs.modal).onclick = function () {};
+    ReactDOM.findDOMNode(this.refs.backdrop).onclick = function () {};
   },
 
   componentDidMount: function () {
     this._onDocumentKeyupListener =
       EventListener.listen(document, 'keyup', this.handleDocumentKeyUp);
 
-    var container = (this.props.container && this.props.container.getDOMNode()) || document.body;
+    var container = (this.props.container && ReactDOM.findDOMNode(this.props.container)) || document.body;
     container.className += container.className.length ? ' modal-open' : 'modal-open';
 
     if (this.props.backdrop) {
@@ -140,7 +141,7 @@ var Modal = React.createClass({
 
   componentWillUnmount: function () {
     this._onDocumentKeyupListener.remove();
-    var container = (this.props.container && this.props.container.getDOMNode()) || document.body;
+    var container = (this.props.container && ReactDOM.findDOMNode(this.props.container)) || document.body;
     container.className = container.className.replace(/ ?modal-open/, '');
   },
 
