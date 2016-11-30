@@ -26,7 +26,8 @@
   "author": "Stephen J. Collings <stevoland@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "react": ">=0.12"
+    "react": ">=0.14",
+    "react-dom": ">=0.14"
   },
   "devDependencies": {
     "async": "~0.2.9",
