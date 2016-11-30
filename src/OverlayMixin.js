@@ -2,6 +2,14 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var CustomPropTypes = require('./utils/CustomPropTypes');
 
+function getBody() {
+  if (typeof document !== 'undefined') {
+    return document.body;
+  }
+}
+
+var defaultContainer = {};
+
 module.exports = {
   propTypes: {
     container: CustomPropTypes.mountable
@@ -9,16 +17,7 @@ module.exports = {
 
   getDefaultProps: function () {
     return {
-      container: {
-        // Provide `getDOMNode` fn mocking a React component API. The `document.body`
-        // reference needs to be contained within this function so that it is not accessed
-        // in environments where it would not be defined, e.g. nodejs. Equally this is needed
-        // before the body is defined where `document.body === null`, this ensures
-        // `document.body` is only accessed after componentDidMount.
-        getDOMNode: function getDOMNode() {
-          return document.body;
-        }
-      }
+      container: defaultContainer
     };
   },
 
@@ -79,7 +78,8 @@ module.exports = {
   },
 
   getContainerDOMNode: function () {
-    return this.props.container.getDOMNode ?
-      ReactDOM.findDOMNode(this.props.container) : this.props.container;
+    var container = this.props.container;
+    return (container === defaultContainer) ?
+      getBody() : ReactDOM.findDOMNode(container);
   }
 };
