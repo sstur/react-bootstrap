@@ -1,6 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var CustomPropTypes = require('./utils/CustomPropTypes');
 
 function getBody() {
   if (typeof document !== 'undefined') {
@@ -8,11 +7,13 @@ function getBody() {
   }
 }
 
-var defaultContainer = {};
+var defaultContainer = {
+  render: function() {}
+};
 
 module.exports = {
   propTypes: {
-    container: CustomPropTypes.mountable
+    container: PropTypes.object
   },
 
   getDefaultProps: function () {
