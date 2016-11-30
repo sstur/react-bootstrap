@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
 var cloneWithProps = require('./utils/cloneWithProps');
@@ -42,7 +43,7 @@ var Panel = React.createClass({
   },
 
   getCollapsableDimensionValue: function () {
-    return this.refs.panel.getDOMNode().scrollHeight;
+    return ReactDOM.findDOMNode(this.refs.panel).scrollHeight;
   },
 
   getCollapsableDOMNode: function () {
@@ -50,7 +51,7 @@ var Panel = React.createClass({
       return null;
     }
 
-    return this.refs.panel.getDOMNode();
+    return ReactDOM.findDOMNode(this.refs.panel);
   },
 
   render: function () {

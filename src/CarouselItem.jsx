@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
 var TransitionEvents = require('./utils/TransitionEvents');
@@ -40,7 +41,7 @@ var CarouselItem = React.createClass({
   componentDidUpdate: function (prevProps) {
     if (!this.props.active && prevProps.active) {
       TransitionEvents.addEndEventListener(
-        this.getDOMNode(),
+        ReactDOM.findDOMNode(this),
         this.handleAnimateOutEnd
       );
     }

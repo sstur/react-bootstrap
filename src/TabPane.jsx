@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
 var TransitionEvents = require('./utils/TransitionEvents');
@@ -37,7 +38,7 @@ var TabPane = React.createClass({
     }
     if (this.state.animateOut) {
       TransitionEvents.addEndEventListener(
-        this.getDOMNode(),
+        ReactDOM.findDOMNode(this),
         this.stopAnimateOut
       );
     }

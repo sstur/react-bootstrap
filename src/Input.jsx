@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var joinClasses = require('./utils/joinClasses');
 var classSet = require('./utils/classSet');
 var Button = require('./Button');
@@ -29,7 +30,7 @@ var Input = React.createClass({
   },
 
   getInputDOMNode: function () {
-    return this.refs.input.getDOMNode();
+    return ReactDOM.findDOMNode(this.refs.input);
   },
 
   getValue: function () {
