@@ -136,10 +136,11 @@ module.exports = function (grunt) {
             almond: "../tools/vendor/almond"
           },
           packages: [
-            {	name: 'react', location: '../node_modules/react', main: './react' }
+            {	name: 'react', location: '../node_modules/react', main: './react' },
+            {	name: 'react-dom', location: '../node_modules/react-dom', main: './react-dom' }
           ],
           include: ["almond", "react-bootstrap"],
-          exclude: ["react"],
+          exclude: ["react", "react-dom"],
           out: "amd/react-bootstrap.js",
           cjsTranslate: true,
           wrap: {
@@ -147,7 +148,8 @@ module.exports = function (grunt) {
             endFile: "tools/wrap.end"
           },
           rawText: {
-            'react': 'define({});'
+            'react': 'define({});',
+            'react-dom': 'define({});'
           },
           optimize: "none"
         }
