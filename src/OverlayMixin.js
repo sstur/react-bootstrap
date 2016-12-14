@@ -62,7 +62,7 @@ module.exports = {
   },
 
   _unrenderOverlay: function () {
-    React.unmountComponentAtNode(this._overlayTarget);
+    ReactDOM.unmountComponentAtNode(this._overlayTarget);
     this._overlayInstance = null;
   },
 
