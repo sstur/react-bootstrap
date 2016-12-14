@@ -41,8 +41,8 @@ describe('NavItem', function () {
       </NavItem>
     );
 
-    assert.ok(!instance.getDOMNode().hasAttribute('href'));
-    assert.ok(!instance.getDOMNode().hasAttribute('title'));
+    assert.ok(!ReactDOM.findDOMNode(instance).hasAttribute('href'));
+    assert.ok(!ReactDOM.findDOMNode(instance).hasAttribute('title'));
   });
 
   it('Should call `onSelect` when item is selected', function (done) {

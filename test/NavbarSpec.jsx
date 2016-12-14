@@ -11,7 +11,7 @@ describe('Nav', function () {
     var instance = ReactTestUtils.renderIntoDocument(
       <Navbar />
     );
-    var nav = instance.getDOMNode();
+    var nav = ReactDOM.findDOMNode(instance);
     assert.equal(nav.nodeName, 'NAV');
     assert.ok(nav.className.match(/\bnavbar\b/));
     assert.ok(nav.getAttribute('role'), 'navigation');
@@ -56,14 +56,14 @@ describe('Nav', function () {
     var instance = ReactTestUtils.renderIntoDocument(
       <Navbar role="banner"/>
     );
-    assert.ok(instance.getDOMNode().getAttribute('role'), 'banner');
+    assert.ok(ReactDOM.findDOMNode(instance).getAttribute('role'), 'banner');
   });
 
   it('Should override node class', function () {
     var instance = ReactTestUtils.renderIntoDocument(
       <Navbar componentClass={'header'}/>
     );
-    assert.ok(instance.getDOMNode().nodeName, 'HEADER');
+    assert.ok(ReactDOM.findDOMNode(instance).nodeName, 'HEADER');
   });
 
   it('Should add header with brand', function () {
@@ -78,7 +78,7 @@ describe('Nav', function () {
     var brand = ReactTestUtils.findRenderedDOMComponentWithClass(header, 'navbar-brand');
 
     assert.ok(brand);
-    assert.equal(brand.getDOMNode().innerText, 'Brand');
+    assert.equal(ReactDOM.findDOMNode(brand).innerText, 'Brand');
   });
 
   it('Should add header with brand component', function () {
@@ -93,8 +93,8 @@ describe('Nav', function () {
     var brand = ReactTestUtils.findRenderedDOMComponentWithClass(header, 'navbar-brand');
 
     assert.ok(brand);
-    assert.equal(brand.getDOMNode().nodeName, 'A');
-    assert.equal(brand.getDOMNode().innerText, 'Brand');
+    assert.equal(ReactDOM.findDOMNode(brand).nodeName, 'A');
+    assert.equal(ReactDOM.findDOMNode(brand).innerText, 'Brand');
   });
 
   it('Should pass navbar prop to navs', function () {

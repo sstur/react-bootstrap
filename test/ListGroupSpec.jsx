@@ -11,7 +11,7 @@ describe('ListGroup', function () {
     var instance = ReactTestUtils.renderIntoDocument(
       <ListGroup/>
     );
-    assert.equal(instance.getDOMNode().nodeName, "DIV");
+    assert.equal(ReactDOM.findDOMNode(instance).nodeName, "DIV");
     assert.ok(ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'list-group'));
   });
 

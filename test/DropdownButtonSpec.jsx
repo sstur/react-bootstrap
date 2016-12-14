@@ -1,6 +1,6 @@
 /*global describe, beforeEach, afterEach, it, assert */
 
-var React          = require('react');
+var ReactDOM       = require('react-dom');
 var ReactTestUtils = require('react/lib/ReactTestUtils');
 var DropdownButton = require('../lib/DropdownButton');
 var MenuItem       = require('../lib/MenuItem');
@@ -12,7 +12,7 @@ describe('DropdownButton', function () {
 
   afterEach(function() {
     if (instance && ReactTestUtils.isCompositeComponent(instance) && instance.isMounted()) {
-      React.unmountComponentAtNode(instance.getDOMNode().parent);
+      ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(instance).parent);
     }
   });
 
@@ -25,8 +25,8 @@ describe('DropdownButton', function () {
     );
 
     var button = ReactTestUtils.findRenderedComponentWithType(instance, Button).getDOMNode();
-    assert.ok(instance.getDOMNode().className.match(/\bbtn-group\b/));
-    assert.ok(instance.getDOMNode().className.match(/\btest-class\b/));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bbtn-group\b/));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\btest-class\b/));
     assert.ok(button.className.match(/\bbtn\b/));
     assert.equal(button.nodeName, 'BUTTON');
     assert.equal(button.type, 'button');
@@ -69,7 +69,7 @@ describe('DropdownButton', function () {
         <MenuItem eventKey="2">MenuItem 2 content</MenuItem>
       </DropdownButton>);
 
-    assert.notOk(instance.getDOMNode().className.match(/\bopen\b/));
+    assert.notOk(ReactDOM.findDOMNode(instance).className.match(/\bopen\b/));
   });
 
   it('Should open when clicked', function () {
@@ -80,8 +80,8 @@ describe('DropdownButton', function () {
       </DropdownButton>
     );
 
-    ReactTestUtils.SimulateNative.click(instance.refs.dropdownButton.getDOMNode());
-    assert.ok(instance.getDOMNode().className.match(/\bopen\b/));
+    ReactTestUtils.SimulateNative.click(ReactDOM.findDOMNode(instance.refs.dropdownButton));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bopen\b/));
   });
 
   it('should call onSelect with eventKey when MenuItem is clicked', function (done) {
@@ -155,7 +155,7 @@ describe('DropdownButton', function () {
       evt.initEvent('click', true, true);
       document.documentElement.dispatchEvent(evt);
 
-      assert.notOk(instance.getDOMNode().className.match(/\bopen\b/));
+      assert.notOk(ReactDOM.findDOMNode(instance).className.match(/\bopen\b/));
     });
   });
 
@@ -167,7 +167,7 @@ describe('DropdownButton', function () {
       </DropdownButton>
     );
 
-    var li = instance.getDOMNode();
+    var li = ReactDOM.findDOMNode(instance);
     var button = ReactTestUtils.findRenderedComponentWithType(instance, Button).getDOMNode();
     assert.equal(li.nodeName, 'LI');
     assert.ok(li.className.match(/\bdropdown\b/));

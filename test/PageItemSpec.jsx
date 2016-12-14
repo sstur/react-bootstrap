@@ -9,9 +9,9 @@ describe('PageItem', function () {
     var instance = ReactTestUtils.renderIntoDocument(
       <PageItem href="#">Text</PageItem>
     );
-    assert.equal(instance.getDOMNode().nodeName, 'LI');
-    assert.equal(instance.getDOMNode().children.length, 1);
-    assert.equal(instance.getDOMNode().children[0].nodeName, 'A');
+    assert.equal(ReactDOM.findDOMNode(instance).nodeName, 'LI');
+    assert.equal(ReactDOM.findDOMNode(instance).children.length, 1);
+    assert.equal(ReactDOM.findDOMNode(instance).children[0].nodeName, 'A');
   });
 
   it('Should output "disabled" attribute as a class', function () {
@@ -63,7 +63,7 @@ describe('PageItem', function () {
     );
 
     var anchor = ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'a');
-    assert.equal(anchor.getDOMNode().getAttribute('target'), '_blank');
+    assert.equal(ReactDOM.findDOMNode(anchor).getAttribute('target'), '_blank');
   });
 
   it('Should call "onSelect" with target attribute', function (done) {

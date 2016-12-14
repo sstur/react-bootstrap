@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var classSet = require('react/lib/cx');
 var CodeMirror = global.CodeMirror;
 var JSXTransformer = global.JSXTransformer;
@@ -56,7 +57,7 @@ var CodeMirrorEditor = React.createClass({
   componentDidMount: function() {
     if (IS_MOBILE) return;
 
-    this.editor = CodeMirror.fromTextArea(this.refs.editor.getDOMNode(), {
+    this.editor = CodeMirror.fromTextArea(ReactDOM.findDOMNode(this.refs.editor), {
       mode: 'javascript',
       lineNumbers: false,
       lineWrapping: true,
@@ -213,23 +214,23 @@ var ReactPlayground = React.createClass({
   },
 
   componentWillUnmount: function() {
-    var mountNode = this.refs.mount.getDOMNode();
+    var mountNode = ReactDOM.findDOMNode(this.refs.mount);
     try {
-      React.unmountComponentAtNode(mountNode);
+      ReactDOM.unmountComponentAtNode(mountNode);
     } catch (e) { }
   },
 
   executeCode: function() {
-    var mountNode = this.refs.mount.getDOMNode();
+    var mountNode = ReactDOM.findDOMNode(this.refs.mount);
 
     try {
-      React.unmountComponentAtNode(mountNode);
+      ReactDOM.unmountComponentAtNode(mountNode);
     } catch (e) { }
 
     try {
       var compiledCode = this.compileCode();
       if (this.props.renderCode) {
-        React.render(
+        ReactDOM.render(
           <CodeMirrorEditor codeText={compiledCode} readOnly={true} />,
           mountNode
         );
@@ -238,7 +239,7 @@ var ReactPlayground = React.createClass({
       }
     } catch (err) {
       this.setTimeout(function() {
-        React.render(
+        ReactDOM.render(
           <Alert bsStyle="danger">{err.toString()}</Alert>,
           mountNode
         );

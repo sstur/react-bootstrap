@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var fs = require('fs');
 
 var Affix = require('../../lib/Affix');
@@ -30,15 +31,15 @@ var ComponentsPage = React.createClass({
   },
 
   componentDidMount: function () {
-    var elem = this.refs.sideNav.getDOMNode(),
+    var elem = ReactDOM.findDOMNode(this.refs.sideNav),
         domUtils = Affix.domUtils,
         sideNavOffsetTop = domUtils.getOffset(elem).top,
         sideNavMarginTop = parseInt(domUtils.getComputedStyles(elem.firstChild).marginTop, 10),
-        topNavHeight = this.refs.topNav.getDOMNode().offsetHeight;
+        topNavHeight = ReactDOM.findDOMNode(this.refs.topNav).offsetHeight;
 
     this.setState({
       navOffsetTop: sideNavOffsetTop - topNavHeight - sideNavMarginTop,
-      navOffsetBottom: this.refs.footer.getDOMNode().offsetHeight
+      navOffsetBottom: ReactDOM.findDOMNode(this.refs.footer).offsetHeight
     });
   },
 

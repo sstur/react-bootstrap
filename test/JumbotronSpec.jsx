@@ -20,7 +20,7 @@ describe('Jumbotron', function () {
         Content
       </Jumbotron>
     );
-    assert.ok(instance.getDOMNode().className.match(/\bjumbotron\b/));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bjumbotron\b/));
   });
 
 });

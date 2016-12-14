@@ -1,6 +1,7 @@
 /*global describe, it, assert, afterEach */
 
 var React          = require('react');
+var ReactDOM       = require('react-dom');
 var ReactTestUtils = require('react/lib/ReactTestUtils');
 var OverlayMixin   = require('../lib/OverlayMixin');
 
@@ -21,7 +22,7 @@ describe('OverlayMixin', function () {
 
   afterEach(function() {
     if (instance && ReactTestUtils.isCompositeComponent(instance) && instance.isMounted()) {
-      React.unmountComponentAtNode(instance.getDOMNode().parent);
+      ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(instance).parent);
     }
   });
 
@@ -46,7 +47,7 @@ describe('OverlayMixin', function () {
       <Container />
     );
 
-    assert.equal(instance.getDOMNode().querySelectorAll('#test1').length, 1);
+    assert.equal(ReactDOM.findDOMNode(instance).querySelectorAll('#test1').length, 1);
   });
 
   it('Should not render a null overlay', function() {

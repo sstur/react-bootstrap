@@ -1,6 +1,7 @@
 /*global document, describe, beforeEach, afterEach, it, assert */
 
 var React          = require('react');
+var ReactDOM       = require('react-dom');
 var ReactTestUtils = require('react/lib/ReactTestUtils');
 var SplitButton    = require('../lib/SplitButton');
 var MenuItem       = require('../lib/MenuItem');
@@ -10,7 +11,7 @@ describe('SplitButton', function () {
   var instance;
   afterEach(function() {
     if (instance && ReactTestUtils.isCompositeComponent(instance) && instance.isMounted()) {
-      React.unmountComponentAtNode(instance.getDOMNode().parent);
+      ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(instance).parent);
     }
   });
 
@@ -22,9 +23,9 @@ describe('SplitButton', function () {
       </SplitButton>
     );
 
-    var button = instance.refs.button.getDOMNode();
-    var dropdownButton = instance.refs.dropdownButton.getDOMNode();
-    assert.ok(instance.getDOMNode().className.match(/\bbtn-group\b/));
+    var button = ReactDOM.findDOMNode(instance.refs.button);
+    var dropdownButton = ReactDOM.findDOMNode(instance.refs.dropdownButton);
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bbtn-group\b/));
     assert.ok(button.className.match(/\bbtn\b/));
     assert.equal(button.nodeName, 'BUTTON');
     assert.equal(button.type, 'button');
@@ -43,7 +44,7 @@ describe('SplitButton', function () {
       </SplitButton>
     );
 
-    var menu = instance.refs.menu.getDOMNode();
+    var menu = ReactDOM.findDOMNode(instance.refs.menu);
     assert.ok(menu.className.match(/\bdropdown-menu\b/));
     assert.equal(menu.getAttribute('role'), 'menu');
     assert.equal(menu.firstChild.nodeName, 'LI');
@@ -73,7 +74,7 @@ describe('SplitButton', function () {
       </SplitButton>
     );
 
-    var button = instance.refs.button.getDOMNode();
+    var button = ReactDOM.findDOMNode(instance.refs.button);
     assert.ok(button.className.match(/\bbtn-primary\b/));
   });
 
@@ -85,9 +86,9 @@ describe('SplitButton', function () {
       </SplitButton>
     );
 
-    var button = instance.refs.button.getDOMNode();
+    var button = ReactDOM.findDOMNode(instance.refs.button);
     assert.ok(button.disabled);
-    var dropdownButton = instance.refs.dropdownButton.getDOMNode();
+    var dropdownButton = ReactDOM.findDOMNode(instance.refs.dropdownButton);
     assert.ok(button.disabled);
   });
 
@@ -99,7 +100,7 @@ describe('SplitButton', function () {
       </SplitButton>
     );
 
-    assert.equal(instance.getDOMNode().getAttribute('id'), 'testId');
+    assert.equal(ReactDOM.findDOMNode(instance).getAttribute('id'), 'testId');
   });
 
   it('Should be closed by default', function () {
@@ -110,7 +111,7 @@ describe('SplitButton', function () {
       </SplitButton>
     );
 
-    assert.notOk(instance.getDOMNode().className.match(/\bopen\b/));
+    assert.notOk(ReactDOM.findDOMNode(instance).className.match(/\bopen\b/));
   });
 
   it('Should open when clicked', function () {
@@ -121,9 +122,9 @@ describe('SplitButton', function () {
       </SplitButton>
     );
 
-    ReactTestUtils.SimulateNative.click(instance.refs.dropdownButton.getDOMNode());
+    ReactTestUtils.SimulateNative.click(ReactDOM.findDOMNode(instance.refs.dropdownButton));
 
-    assert.ok(instance.getDOMNode().className.match(/\bopen\b/));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bopen\b/));
   });
 
   it('should call onSelect with eventKey when MenuItem is clicked', function (done) {
@@ -154,7 +155,7 @@ describe('SplitButton', function () {
       </SplitButton>
     );
 
-    assert.ok(instance.getDOMNode().className.match(/\bdropup\b/));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bdropup\b/));
   });
 
   it('Should pass pullRight prop to menu', function () {
@@ -213,7 +214,7 @@ describe('SplitButton', function () {
       evt.initEvent('click', true, true);
       document.documentElement.dispatchEvent(evt);
 
-      assert.notOk(instance.getDOMNode().className.match(/\bopen\b/));
+      assert.notOk(ReactDOM.findDOMNode(instance).className.match(/\bopen\b/));
     });
   });
 });

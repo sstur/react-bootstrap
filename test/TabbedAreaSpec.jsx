@@ -75,8 +75,8 @@ describe('TabbedArea', function () {
       </TabbedArea>
     );
 
-    assert.ok(instance.refs.pane1.getDOMNode().className.match(/\bcustom\b/));
-    assert.equal(instance.refs.pane1.getDOMNode().id, 'pane0id');
+    assert.ok(ReactDOM.findDOMNode(instance.refs.pane1).className.match(/\bcustom\b/));
+    assert.equal(ReactDOM.findDOMNode(instance.refs.pane1).id, 'pane0id');
   });
 
   it('Should show the correct initial pane', function () {

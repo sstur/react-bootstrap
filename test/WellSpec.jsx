@@ -20,7 +20,7 @@ describe('Well', function () {
         Content
       </Well>
     );
-    assert.ok(instance.getDOMNode().className.match(/\bwell\b/));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bwell\b/));
   });
 
   it('Should accept bsSize arguments', function () {
@@ -29,7 +29,7 @@ describe('Well', function () {
         Content
       </Well>
       );
-      assert.ok(instance.getDOMNode().className.match(/\bwell-sm\b/));
+      assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bwell-sm\b/));
     });
 
 });

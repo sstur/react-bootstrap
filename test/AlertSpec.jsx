@@ -20,7 +20,7 @@ describe('Alert', function () {
         Message
       </Alert>
     );
-    assert.ok(instance.getDOMNode().className.match(/\balert\b/));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\balert\b/));
   });
 
   it('Should have dismissable style with onDismiss', function () {
@@ -30,7 +30,7 @@ describe('Alert', function () {
         Message
       </Alert>
     );
-    assert.ok(instance.getDOMNode().className.match(/\balert-dismissable\b/));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\balert-dismissable\b/));
   });
 
   it('Should call onDismiss callback on dismiss click', function (done) {
@@ -42,7 +42,7 @@ describe('Alert', function () {
         Message
       </Alert>
     );
-    ReactTestUtils.Simulate.click(instance.getDOMNode().children[0]);
+    ReactTestUtils.Simulate.click(ReactDOM.findDOMNode(instance).children[0]);
   });
 
   it('Should call onDismiss callback on dismissAfter time', function (done) {
@@ -62,7 +62,7 @@ describe('Alert', function () {
         Message
       </Alert>
     );
-    assert.ok(instance.getDOMNode().className.match(/\balert-\w+\b/));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\balert-\w+\b/));
   });
 
   it('Should have use bsStyle class', function () {
@@ -71,6 +71,6 @@ describe('Alert', function () {
         Message
       </Alert>
     );
-    assert.ok(instance.getDOMNode().className.match(/\balert-danger\b/));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\balert-danger\b/));
   });
 });

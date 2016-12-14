@@ -15,10 +15,10 @@ describe('ProgressBar', function () {
     );
     var bar = getProgressBar(instance);
 
-    assert.equal(instance.getDOMNode().nodeName, 'DIV');
-    assert.ok(instance.getDOMNode().className.match(/\bprogress\b/));
-    assert.ok(bar.getDOMNode().className.match(/\bprogress-bar\b/));
-    assert.equal(bar.getDOMNode().getAttribute('role'), 'progressbar');
+    assert.equal(ReactDOM.findDOMNode(instance).nodeName, 'DIV');
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bprogress\b/));
+    assert.ok(ReactDOM.findDOMNode(bar).className.match(/\bprogress-bar\b/));
+    assert.equal(ReactDOM.findDOMNode(bar).getAttribute('role'), 'progressbar');
   });
 
   it('Should have the default class', function () {
@@ -27,7 +27,7 @@ describe('ProgressBar', function () {
     );
     var bar = getProgressBar(instance);
 
-    assert.ok(bar.getDOMNode().className.match(/\bprogress-bar-default\b/));
+    assert.ok(ReactDOM.findDOMNode(bar).className.match(/\bprogress-bar-default\b/));
   });
 
   it('Should have the primary class', function () {
@@ -36,7 +36,7 @@ describe('ProgressBar', function () {
     );
     var bar = getProgressBar(instance);
 
-    assert.ok(bar.getDOMNode().className.match(/\bprogress-bar-primary\b/));
+    assert.ok(ReactDOM.findDOMNode(bar).className.match(/\bprogress-bar-primary\b/));
   });
 
   it('Should have the success class', function () {
@@ -45,7 +45,7 @@ describe('ProgressBar', function () {
     );
     var bar = getProgressBar(instance);
 
-    assert.ok(bar.getDOMNode().className.match(/\bprogress-bar-success\b/));
+    assert.ok(ReactDOM.findDOMNode(bar).className.match(/\bprogress-bar-success\b/));
   });
 
   it('Should have the warning class', function () {
@@ -54,7 +54,7 @@ describe('ProgressBar', function () {
     );
     var bar = getProgressBar(instance);
 
-    assert.ok(bar.getDOMNode().className.match(/\bprogress-bar-warning\b/));
+    assert.ok(ReactDOM.findDOMNode(bar).className.match(/\bprogress-bar-warning\b/));
   });
 
   it('Should default to min:0, max:100', function () {
@@ -73,7 +73,7 @@ describe('ProgressBar', function () {
     );
     var bar = getProgressBar(instance);
 
-    assert.equal(bar.getDOMNode().style.width, '0%');
+    assert.equal(ReactDOM.findDOMNode(bar).style.width, '0%');
   });
 
   it('Should have 10% computed width', function () {
@@ -82,7 +82,7 @@ describe('ProgressBar', function () {
     );
     var bar = getProgressBar(instance);
 
-    assert.equal(bar.getDOMNode().style.width, '10%');
+    assert.equal(ReactDOM.findDOMNode(bar).style.width, '10%');
   });
 
   it('Should have 100% computed width', function () {
@@ -91,7 +91,7 @@ describe('ProgressBar', function () {
     );
     var bar = getProgressBar(instance);
 
-    assert.equal(bar.getDOMNode().style.width, '100%');
+    assert.equal(ReactDOM.findDOMNode(bar).style.width, '100%');
   });
 
   it('Should have 50% computed width with non-zero min', function () {
@@ -100,7 +100,7 @@ describe('ProgressBar', function () {
     );
     var bar = getProgressBar(instance);
 
-    assert.equal(bar.getDOMNode().style.width, '50%');
+    assert.equal(ReactDOM.findDOMNode(bar).style.width, '50%');
   });
 
   it('Should not have label', function () {
@@ -108,7 +108,7 @@ describe('ProgressBar', function () {
       <ProgressBar min={0} max={10} now={5} bsStyle='primary' />
     );
 
-    assert.equal(instance.getDOMNode().innerText, '');
+    assert.equal(ReactDOM.findDOMNode(instance).innerText, '');
   });
 
   it('Should have label', function () {
@@ -117,7 +117,7 @@ describe('ProgressBar', function () {
         label='min:%(min)s, max:%(max)s, now:%(now)s, percent:%(percent)s, bsStyle:%(bsStyle)s' />
     );
 
-    assert.equal(instance.getDOMNode().innerText, 'min:0, max:10, now:5, percent:50, bsStyle:primary');
+    assert.equal(ReactDOM.findDOMNode(instance).innerText, 'min:0, max:10, now:5, percent:50, bsStyle:primary');
   });
 
   it('Should have screen reader only label', function () {
@@ -127,7 +127,7 @@ describe('ProgressBar', function () {
     );
     var srLabel = ReactTestUtils.findRenderedDOMComponentWithClass(instance, 'sr-only');
 
-    assert.equal(srLabel.getDOMNode().innerText, 'min:0, max:10, now:5, percent:50, bsStyle:primary');
+    assert.equal(ReactDOM.findDOMNode(srLabel).innerText, 'min:0, max:10, now:5, percent:50, bsStyle:primary');
   });
 
   it('Should have a label that is a React component', function () {
@@ -162,7 +162,7 @@ describe('ProgressBar', function () {
       <ProgressBar min={1} max={11} now={6} striped />
     );
 
-    assert.ok(instance.getDOMNode().className.match(/\bprogress-striped\b/));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bprogress-striped\b/));
   });
 
   it('Should show animated striped bar', function () {
@@ -170,8 +170,8 @@ describe('ProgressBar', function () {
       <ProgressBar min={1} max={11} now={6} active />
     );
 
-    assert.ok(instance.getDOMNode().className.match(/\bprogress-striped\b/));
-    assert.ok(instance.getDOMNode().className.match(/\bactive\b/));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bprogress-striped\b/));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bactive\b/));
   });
 
   it('Should show stacked bars', function () {
@@ -181,7 +181,7 @@ describe('ProgressBar', function () {
         <ProgressBar key={2} now={30} />
       </ProgressBar>
     );
-    var wrapper = instance.getDOMNode();
+    var wrapper = ReactDOM.findDOMNode(instance);
     var bar1 = wrapper.firstChild;
     var bar2 = wrapper.lastChild;
 

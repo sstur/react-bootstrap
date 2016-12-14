@@ -38,12 +38,12 @@ describe('Modal', function () {
     var instance = ReactTestUtils.renderIntoDocument(
         <Container />
     );
-    assert.ok(instance.getDOMNode().className.match(/\modal-open\b/));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\modal-open\b/));
 
-    var backdrop = instance.getDOMNode().getElementsByClassName('modal-backdrop')[0];
+    var backdrop = ReactDOM.findDOMNode(instance).getElementsByClassName('modal-backdrop')[0];
     ReactTestUtils.Simulate.click(backdrop);
     setTimeout(function(){
-      assert.equal(instance.getDOMNode().className.length, 0);
+      assert.equal(ReactDOM.findDOMNode(instance).className.length, 0);
       done();
     }, 0);
 
@@ -57,7 +57,7 @@ describe('Modal', function () {
       </Modal>
     );
 
-    var backdrop = instance.getDOMNode().getElementsByClassName('modal-backdrop')[0];
+    var backdrop = ReactDOM.findDOMNode(instance).getElementsByClassName('modal-backdrop')[0];
     ReactTestUtils.Simulate.click(backdrop);
   });
 
@@ -69,7 +69,7 @@ describe('Modal', function () {
       </Modal>
     );
 
-    var backdrop = instance.getDOMNode().getElementsByClassName('modal')[0];
+    var backdrop = ReactDOM.findDOMNode(instance).getElementsByClassName('modal')[0];
     ReactTestUtils.Simulate.click(backdrop);
   });
 
@@ -81,7 +81,7 @@ describe('Modal', function () {
       </Modal>
     );
 
-    var dialog = instance.getDOMNode().getElementsByClassName('modal-dialog')[0];
+    var dialog = ReactDOM.findDOMNode(instance).getElementsByClassName('modal-dialog')[0];
     assert.ok(dialog.className.match(/\bmodal-sm\b/));
   });
 

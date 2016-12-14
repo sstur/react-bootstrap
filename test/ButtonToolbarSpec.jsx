@@ -17,8 +17,8 @@ describe('ButtonToolbar', function () {
         </ButtonGroup>
       </ButtonToolbar>
     );
-    assert.equal(instance.getDOMNode().nodeName, 'DIV');
-    assert.ok(instance.getDOMNode().className.match(/\bbtn-toolbar\b/));
-    assert.equal(instance.getDOMNode().getAttribute('role'), 'toolbar');
+    assert.equal(ReactDOM.findDOMNode(instance).nodeName, 'DIV');
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bbtn-toolbar\b/));
+    assert.equal(ReactDOM.findDOMNode(instance).getAttribute('role'), 'toolbar');
   });
 });

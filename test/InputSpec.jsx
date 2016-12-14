@@ -40,7 +40,7 @@ describe('Input', function () {
 
     var select = ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'select');
     assert.ok(select);
-    assert.equal(select.getDOMNode().children.length, 2)
+    assert.equal(ReactDOM.findDOMNode(select).children.length, 2)
     assert.equal(instance.getValue(), 'v');
   });
 
@@ -87,7 +87,7 @@ describe('Input', function () {
       <Input groupClassName="group" bsStyle="error" />
     );
 
-    var node = instance.getDOMNode();
+    var node = ReactDOM.findDOMNode(instance);
     assert.include(node.className, 'form-group');
     assert.include(node.className, 'group');
     assert.include(node.className, 'has-error');
@@ -166,7 +166,7 @@ describe('Input', function () {
       <Input type="file" wrapperClassName="wrapper" label="Label" help="h" />
     );
 
-    var node = instance.getDOMNode();
+    var node = ReactDOM.findDOMNode(instance);
     assert.include(node.className, 'form-group');
     assert.equal(node.children[0].tagName.toLowerCase(), 'label');
     assert.include(node.children[1].className, 'wrapper');
@@ -181,7 +181,7 @@ describe('Input', function () {
       <Input type="checkbox" wrapperClassName="wrapper" label="Label" help="h" />
     );
 
-    var node = instance.getDOMNode();
+    var node = ReactDOM.findDOMNode(instance);
     assert.include(node.className, 'form-group');
     assert.include(node.children[0].className, 'wrapper');
     assert.include(node.children[0].children[0].className, 'checkbox');
@@ -195,7 +195,7 @@ describe('Input', function () {
       <Input type="text" label="l" wrapperClassName="wrapper" addonAfter="a" hasFeedback={true} help="h"/>
     );
 
-    var node = instance.getDOMNode();
+    var node = ReactDOM.findDOMNode(instance);
     assert.include(node.className, 'form-group');
     assert.equal(node.children[0].tagName.toLowerCase(), 'label');
     assert.include(node.children[1].className, 'wrapper');

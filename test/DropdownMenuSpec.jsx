@@ -14,7 +14,7 @@ describe('DropdownMenu', function () {
       </DropdownMenu>
     );
 
-    var node = instance.getDOMNode();
+    var node = ReactDOM.findDOMNode(instance);
 
     assert.ok(node.className.match(/\bdropdown-menu\b/));
     assert.equal(node.nodeName, 'UL');
@@ -33,7 +33,7 @@ describe('DropdownMenu', function () {
       </DropdownMenu>
     );
 
-    var node = instance.getDOMNode();
+    var node = ReactDOM.findDOMNode(instance);
     assert.ok(node.className.match(/\bnew-fancy-class\b/));
   });
 

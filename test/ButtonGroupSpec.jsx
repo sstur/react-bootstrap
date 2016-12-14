@@ -14,8 +14,8 @@ describe('ButtonGroup', function () {
         </Button>
       </ButtonGroup>
     );
-    assert.equal(instance.getDOMNode().nodeName, 'DIV');
-    assert.ok(instance.getDOMNode().className.match(/\bbtn-group\b/));
+    assert.equal(ReactDOM.findDOMNode(instance).nodeName, 'DIV');
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bbtn-group\b/));
   });
 
   it('Should add size', function () {
@@ -26,7 +26,7 @@ describe('ButtonGroup', function () {
         </Button>
       </ButtonGroup>
     );
-    assert.ok(instance.getDOMNode().className.match(/\bbtn-group-lg\b/));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bbtn-group-lg\b/));
   });
 
   it('Should add vertical variation', function () {
@@ -37,7 +37,7 @@ describe('ButtonGroup', function () {
         </Button>
       </ButtonGroup>
     );
-    assert.equal(instance.getDOMNode().className.trim(), 'btn-group-vertical');
+    assert.equal(ReactDOM.findDOMNode(instance).className.trim(), 'btn-group-vertical');
   });
 
   it('Should add justified variation', function () {
@@ -48,6 +48,6 @@ describe('ButtonGroup', function () {
         </Button>
       </ButtonGroup>
     );
-    assert.ok(instance.getDOMNode().className.match(/\bbtn-group-justified\b/));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\bbtn-group-justified\b/));
   });
 });

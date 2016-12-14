@@ -21,7 +21,7 @@ describe('Label', function () {
         Message
       </Label>
     );
-    assert.ok(instance.getDOMNode().className.match(/\blabel\b/));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\blabel\b/));
   });
 
   it('Should have bsStyle by default', function () {
@@ -30,7 +30,7 @@ describe('Label', function () {
         Message
       </Label>
     );
-    assert.ok(instance.getDOMNode().className.match(/\blabel-default\b/));
+    assert.ok(ReactDOM.findDOMNode(instance).className.match(/\blabel-default\b/));
   });
 
 });
