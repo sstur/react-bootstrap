@@ -1,10 +1,10 @@
 {
-  "name": "react-bootstrap",
+  "name": "@sstur/react-bootstrap",
   "version": "0.32.1",
   "description": "Bootstrap 3 components built with React",
   "repository": {
     "type": "git",
-    "url": "react-bootstrap/react-bootstrap"
+    "url": "sstur/react-bootstrap"
   },
   "homepage": "https://react-bootstrap.github.io/",
   "main": "lib/index.js",
