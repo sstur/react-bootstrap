@@ -86,7 +86,11 @@ const propTypes = {
   /**
    * @private
    */
-  onHide: PropTypes.oneOf([null]),
+  onHide: PropTypes.func,
+   /**
+   * @private
+   */
+  onShow: PropTypes.func,
   /**
    * @private
    */
@@ -211,8 +215,12 @@ class OverlayTrigger extends React.Component {
     }
   }
 
+  show() {
+    this.setState({ show: true }, this.props.onShow);
+  }
+
   hide() {
-    this.setState({ show: false });
+    this.setState({ show: false }, this.props.onHide);
   }
 
   makeOverlay(overlay, props) {
